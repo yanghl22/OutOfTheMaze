@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace OutOfTheMaze
 {
@@ -24,13 +25,13 @@ namespace OutOfTheMaze
                 grid[i] = i + 1;
             }
             stepStack = new Stack<int>();
-            stepStack.Push(0);
+            stepStack.Push(1);
         }
 
         public void Run()
         {
-            int cur_step = stepStack.Peek();
-            while (cur_step < gridLength - 1)
+            int top = stepStack.Peek();
+            while (top < gridLength)
             {
                 if (CanGoRight())
                 {
@@ -44,12 +45,14 @@ namespace OutOfTheMaze
                 {
                     GoBack();
                 }
-                cur_step = stepStack.Peek();
-                if (cur_step == gridLength - 1 || cur_step == 0)
+
+                if (stepStack.Count == 0 || stepStack.Peek() == gridLength)
                 {
                     break;
                 }
             }
+
+            PrintPath();
         }
 
         public bool Block(int number)
@@ -64,9 +67,9 @@ namespace OutOfTheMaze
 
         private bool CanGoRight()
         {
-            int cur_step = stepStack.Peek();
+            int top = stepStack.Peek();
 
-            if ((cur_step % size) < size - 1 && grid[cur_step + 1] > 0)
+            if ((top % size) != 0 && grid[top] > 0)
             {
                 return true;
             }
@@ -75,15 +78,15 @@ namespace OutOfTheMaze
 
         private void GoRight()
         {
-            int cur_step = stepStack.Peek();
-            stepStack.Push(cur_step + 1);
+            int top = stepStack.Peek();
+            stepStack.Push(top + 1);
         }
 
         private bool CanGoDown()
         {
-            int cur_step = stepStack.Peek();
+            int top = stepStack.Peek();
 
-            if ((cur_step / size) < size - 1 && grid[cur_step + size] > 0)
+            if ((top / size < size - 1 || (top / size == size - 1 && top % size == 0)) && grid[top + size - 1] > 0)
             {
                 return true;
             }
@@ -92,24 +95,40 @@ namespace OutOfTheMaze
 
         private void GoDown()
         {
-            int cur_step = stepStack.Peek();
-            stepStack.Push(cur_step + size);
+            int top = stepStack.Peek();
+            stepStack.Push(top + size);
         }
 
         private void GoBack()
         {
-            int cur_step = stepStack.Peek();
-            grid[cur_step] = 0;
+            int top = stepStack.Peek();
+            grid[top - 1] = 0;
             stepStack.Pop();
         }
 
         private bool Validate(int number)
         {
-            if (number < 1 || number > gridLength - 1 || grid[number] == 0)
+            if (number <= 1 || number >= gridLength || grid[number - 1] == 0)
             {
                 return false;
             }
             return true;
+        }
+
+        private void PrintPath()
+        {
+            if (stepStack.Count <= 0)
+            {
+                Console.WriteLine("No path avaliable!");
+            }
+            else
+            {
+                var steps = stepStack.ToArray();
+                Array.Reverse(steps);
+                StringBuilder path = new StringBuilder();
+                Console.WriteLine("Find below path:");
+                Console.WriteLine(path.AppendJoin(" -> ", steps).ToString());
+            }
         }
 
     }
