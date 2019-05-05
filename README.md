@@ -27,3 +27,50 @@ So, the possible path from cell 1 to cell 9 is: 1 -> 4 -> 7 -> 8 -> 9
   
 We will look a correct solution and review the coding style, class design and documentation.
 Please let us know if you have questions or need more time.
+
+
+## Solution
+This is a small console application build by Dotnet core. 
+It is recommended to use "VS Code" to open the source code.
+
+### Prerequisite:
+
+* DotNetCore 2.2
+* VS Code
+
+### Project Structure:
+
+![alt project structure](https://github.com/yanghl22/OutOfTheMaze/blob/master/static/project-structure.png "project structure")
+
+
+### Execution Steps: 
+
+* Clone Source Code from Github ("git clone 'url'")
+* Open project with VS Code
+* Run 'dotnet restore' to install the packages (optional).
+* Run 'dotnet run' to start the console app.
+* Run 'dotnet test' to execute unit test.
+
+Note: Project is only tested on Mac Evn. Do necessary change if Windows is not working.  
+
+
+### Execution result:
+
+Screenshots :
+
+![alt Execution Result](static/ExecutionResult.png "Execution Result")
+
+
+### Execution Test:
+
+Screenshot:
+
+![alt Execution Test](static/ExecutionTest.png "Execution Test")
+
+
+
+## End
+
+
+
+
