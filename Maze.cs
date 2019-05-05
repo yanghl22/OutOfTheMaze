@@ -28,7 +28,7 @@ namespace OutOfTheMaze
             stepStack.Push(1);
         }
 
-        public void Run()
+        public bool Run()
         {
             int top = stepStack.Peek();
             while (top < gridLength)
@@ -52,17 +52,42 @@ namespace OutOfTheMaze
                 }
             }
 
-            PrintPath();
+            return true;
+        }
+        public string GetPath()
+        {
+            if (stepStack.Count <= 0)
+            {
+                return "No path avaliable!";
+            }
+            else
+            {
+                var steps = stepStack.ToArray();
+                Array.Reverse(steps);
+                StringBuilder path = new StringBuilder();
+                path.Append("Find a path : ");
+                return path.AppendJoin(" -> ", steps).ToString();
+            }
         }
 
-        public bool Block(int number)
+
+        public bool BlockCell(int number)
         {
-            if (Validate(number))
+            if (ValidateBlockedCellNumber(number))
             {
                 grid[number - 1] = 0;
                 return true;
             }
             return false;
+        }
+
+        private bool ValidateBlockedCellNumber(int number)
+        {
+            if (number <= 1 || number >= gridLength || grid[number - 1] == 0)
+            {
+                return false;
+            }
+            return true;
         }
 
         private bool CanGoRight()
@@ -106,29 +131,9 @@ namespace OutOfTheMaze
             stepStack.Pop();
         }
 
-        private bool Validate(int number)
-        {
-            if (number <= 1 || number >= gridLength || grid[number - 1] == 0)
-            {
-                return false;
-            }
-            return true;
-        }
-
         private void PrintPath()
         {
-            if (stepStack.Count <= 0)
-            {
-                Console.WriteLine("No path avaliable!");
-            }
-            else
-            {
-                var steps = stepStack.ToArray();
-                Array.Reverse(steps);
-                StringBuilder path = new StringBuilder();
-                Console.WriteLine("Find below path:");
-                Console.WriteLine(path.AppendJoin(" -> ", steps).ToString());
-            }
+
         }
 
     }

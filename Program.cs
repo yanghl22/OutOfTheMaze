@@ -16,10 +16,15 @@ namespace OutOfTheMaze
                     Maze maze = new Maze(gridSize);
                     if (GetBlockCellArray(maze, blockedSize, gridSize))
                     {
-                        maze.Run();
+                        var isFinished = maze.Run();
+                        if (isFinished)
+                        {
+                            var path = maze.GetPath();
+                            Console.WriteLine(path);
+                        }
                     }
 
-                    System.Console.WriteLine("Type 'exit' and press 'Enter' to end the program; Press 'Enter' to continue! ");
+                    Console.WriteLine("Type 'exit' and press 'Enter' to end the program; Press 'Enter' to continue! ");
                     string exit = Console.ReadLine();
                     if (exit.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
                     {
@@ -77,7 +82,7 @@ namespace OutOfTheMaze
             }
             foreach (int number in intArr)
             {
-                if (!maze.Block(number))
+                if (!maze.BlockCell(number))
                 {
                     return GetBlockCellArray(maze, blockedSize, gridSize);
                 }
