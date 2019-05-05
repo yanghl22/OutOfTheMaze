@@ -53,7 +53,5 @@ namespace OutOfTheMaze
             var path = mockMaze.Run();
             Assert.Equal("Find a path : 1 -> 4 -> 7 -> 8 -> 9", path);
         }
-
-
     }
 }
