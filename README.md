@@ -35,7 +35,7 @@ It is recommended to use "VS Code" to open the source code.
 
 ### Prerequisite:
 
-* DotNetCore 2.2
+* DotNetCore 2.2 (['download dotnet core'](https://dotnet.microsoft.com/download/dotnet-core/2.2))
 * VS Code
 
 ### Project Structure:
@@ -45,13 +45,13 @@ It is recommended to use "VS Code" to open the source code.
 
 ### Execution Steps: 
 
-* Clone Source Code from Github ("git clone 'url'")
+* Clone Source Code from Github (git clone https://github.com/yanghl22/OutOfTheMaze.git )
 * Open project with VS Code
 * Run 'dotnet restore' to install the packages (optional).
 * Run 'dotnet run' to start the console app.
 * Run 'dotnet test' to execute unit test.
 
-Note: Project is only tested on Mac Evn. Do necessary change if Windows is not working.  
+<strong>Note: <em>Project is only tested on Mac Evn. Do necessary change if Windows is not working. </em></strong>
 
 
 ### Execution result:

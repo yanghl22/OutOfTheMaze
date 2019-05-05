@@ -60,13 +60,13 @@ namespace OutOfTheMaze
             }
             return GetBlockedSize(gridSize);
         }
-        
+
         private static bool GetBlockCellArray(Maze maze, int blockedSize, int gridSize)
         {
             Console.WriteLine(string.Format("Please enter {0} blocked cells, the blocked cells should be nonduplicated numbers between 2 to {1} seperated by comma; e.g. '3,4,5' ", blockedSize, gridSize * gridSize - 1));
             string input = Console.ReadLine();
             string[] strArr = input.Split(",");
-            int[] intArr = Array.ConvertAll(strArr, s => int.Parse(s.Trim()));
+            int[] intArr = Array.ConvertAll(strArr, s => { int number; int.TryParse(s.Trim(), out number); return number; });
             intArr = intArr.Distinct().ToArray();
             if (blockedSize != intArr.Length)
             {
