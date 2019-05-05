@@ -16,15 +16,10 @@ namespace OutOfTheMaze
                     Maze maze = new Maze(gridSize);
                     if (GetBlockCellArray(maze, blockedSize, gridSize))
                     {
-                        var isFinished = maze.Run();
-                        if (isFinished)
-                        {
-                            var path = maze.GetPath();
-                            Console.WriteLine(path);
-                        }
+                        Console.WriteLine(maze.Run());
                     }
 
-                    Console.WriteLine("Type 'exit' and press 'Enter' to end the program; Press 'Enter' to continue! ");
+                    Console.WriteLine("Press 'Enter' to continue, 'ctrl + c' to exit!!!");
                     string exit = Console.ReadLine();
                     if (exit.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
                     {
@@ -53,8 +48,6 @@ namespace OutOfTheMaze
             return GetGridSize();
         }
 
-
-
         private static int GetBlockedSize(int gridSize)
         {
             Console.WriteLine(string.Format("Please enter the number of blocked cells, it should between 1 to {0};", gridSize - 1));
@@ -67,8 +60,7 @@ namespace OutOfTheMaze
             }
             return GetBlockedSize(gridSize);
         }
-
-
+        
         private static bool GetBlockCellArray(Maze maze, int blockedSize, int gridSize)
         {
             Console.WriteLine(string.Format("Please enter {0} blocked cells, the blocked cells should be nonduplicated numbers between 2 to {1} seperated by comma; e.g. '3,4,5' ", blockedSize, gridSize * gridSize - 1));

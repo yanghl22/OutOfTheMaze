@@ -40,8 +40,7 @@ namespace OutOfTheMaze
             var mockMaze = CreateDefaultMazeWithSizeEqualTo3();
             mockMaze.BlockCell(2);
             mockMaze.BlockCell(4);
-            mockMaze.Run();
-            var path = mockMaze.GetPath();
+            var path = mockMaze.Run();
             Assert.Equal("No path avaliable!", path);
         }
 
@@ -51,13 +50,10 @@ namespace OutOfTheMaze
             var mockMaze = CreateDefaultMazeWithSizeEqualTo3();
             mockMaze.BlockCell(3);
             mockMaze.BlockCell(5);
-            mockMaze.Run();
-            var path = mockMaze.GetPath();
+            var path = mockMaze.Run();
             Assert.Equal("Find a path : 1 -> 4 -> 7 -> 8 -> 9", path);
         }
 
-
-        
 
     }
 }

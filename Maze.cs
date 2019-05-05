@@ -15,62 +15,64 @@ namespace OutOfTheMaze
             Init(gridSize);
         }
 
+        /*
+        Create Data structure to initialize Maze object
+        Array to store the numbers of Grid.
+        Stack to store temp steps.
+         */
         private void Init(int gridSize)
         {
             size = gridSize;
-            grid = new int[size * size];
             gridLength = size * size;
+            grid = new int[gridLength];
             for (int i = 0; i < gridLength; i++)
             {
                 grid[i] = i + 1;
             }
+
             stepStack = new Stack<int>();
+
+            //Run from step 1
             stepStack.Push(1);
         }
 
-        public bool Run()
+        //Run this method to get out the Maze
+        public string Run()
         {
+            //Run start with step "1";
             int top = stepStack.Peek();
+
+            //Keep running as long as current step is less than the last step
             while (top < gridLength)
             {
                 if (CanGoRight())
                 {
+                    //Move to right if right is accessible
                     GoRight();
                 }
                 else if (CanGoDown())
                 {
+                    //Move down if below is accessible
                     GoDown();
                 }
                 else
                 {
+                    //Move back if both right and down not accessible
                     GoBack();
                 }
 
-                if (stepStack.Count == 0 || stepStack.Peek() == gridLength)
+                //Jump out the loop if no path available
+                if (stepStack.Count == 0)
                 {
                     break;
                 }
-            }
 
-            return true;
-        }
-        public string GetPath()
-        {
-            if (stepStack.Count <= 0)
-            {
-                return "No path avaliable!";
+                top = stepStack.Peek();
             }
-            else
-            {
-                var steps = stepStack.ToArray();
-                Array.Reverse(steps);
-                StringBuilder path = new StringBuilder();
-                path.Append("Find a path : ");
-                return path.AppendJoin(" -> ", steps).ToString();
-            }
+            return GetPath();
         }
 
-
+        // Block the specified cell in the Grid 
         public bool BlockCell(int number)
         {
             if (ValidateBlockedCellNumber(number))
@@ -88,6 +90,22 @@ namespace OutOfTheMaze
                 return false;
             }
             return true;
+        }
+        
+        private string GetPath()
+        {
+            if (stepStack.Count <= 0)
+            {
+                return "No path avaliable!";
+            }
+            else
+            {
+                var steps = stepStack.ToArray();
+                Array.Reverse(steps);
+                StringBuilder path = new StringBuilder();
+                path.Append("Find a path : ");
+                return path.AppendJoin(" -> ", steps).ToString();
+            }
         }
 
         private bool CanGoRight()
@@ -131,10 +149,6 @@ namespace OutOfTheMaze
             stepStack.Pop();
         }
 
-        private void PrintPath()
-        {
-
-        }
 
     }
 }
