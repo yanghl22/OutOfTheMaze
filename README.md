@@ -6,15 +6,15 @@ You can assume the first and the last cells will never be blocked.
 
 For example, if m = 3, for 3 * 3 grid, the grid cells will be numbered as follows.
 
-1 2 3\
-4 5 6\
-7 8 9\
+|   1	|   2	|   3	|
+|   4	|   5	|   6	|
+|   7	|   8	|   9	|
 
 In this grid, if cell number 3 and 5 are blocked, then it will look as follows.
 
-1 2 0\
-4 0 6\
-7 8 9\
+|   1	|   2	|   0	|
+|   4	|   0	|   6	|
+|   7	|   8	|   9	|
 
 So, the possible path from cell 1 to cell 9 is: 1 -> 4 -> 7 -> 8 -> 9
 
