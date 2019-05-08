@@ -40,7 +40,7 @@ It is recommended to use "VS Code" to open the source code.
 
 ### Project Structure:
 
-![alt project structure](static/project-structure.png =250x)
+<img src="./static/project-structure.png" width="250" />
 
 
 ### Execution Steps: 
