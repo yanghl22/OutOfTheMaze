@@ -40,7 +40,7 @@ It is recommended to use "VS Code" to open the source code.
 
 ### Project Structure:
 
-![alt project structure](https://github.com/yanghl22/OutOfTheMaze/blob/master/static/project-structure.png "project structure")
+![alt project structure](https://github.com/yanghl22/OutOfTheMaze/blob/master/static/project-structure.png | width=250)
 
 
 ### Execution Steps: 
